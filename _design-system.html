@@ -1,0 +1,889 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design System — McLennan Field — Waco Rodent Control</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   LOCKED DESIGN SYSTEM — McLennan Field
+   Cotton-belt agrarian: bone white, cotton gray, dark loam,
+   harvest gold. Every page in this build uses these tokens.
+   ============================================================ */
+
+:root {
+  /* ---- CORE PALETTE (locked) ---- */
+  --bone:        #FAF7F0;   /* primary background */
+  --bone-2:      #F2EEE2;   /* alt background / card hover */
+  --cotton:      #E6E0CF;   /* hairline borders, soft dividers */
+  --cotton-2:    #C9C1AC;   /* mid gray-tan, secondary text on bone */
+  --loam:        #2C2A26;   /* primary text + dark surfaces */
+  --loam-2:      #4A463F;   /* secondary text, muted body */
+  --loam-3:      #6B6558;   /* tertiary / captions */
+  --gold:        #C8973A;   /* primary accent — CTAs, underlines */
+  --gold-deep:   #A87A23;   /* gold hover / pressed */
+  --gold-soft:   #E8C988;   /* gold tints, badges */
+
+  /* Status (used sparingly) */
+  --ok:          #4F6E3E;
+  --warn:        #B5732A;
+
+  /* ---- TYPE ---- */
+  --font-serif:  "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-sans:   "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Type scale (mobile-first; desktop bumps via clamp) */
+  --t-display:   clamp(2.25rem, 1.4rem + 3.6vw, 3.75rem);  /* 36–60px */
+  --t-h1:        clamp(1.875rem, 1.25rem + 2.6vw, 2.75rem);/* 30–44px */
+  --t-h2:        clamp(1.5rem, 1.15rem + 1.4vw, 2rem);     /* 24–32px */
+  --t-h3:        clamp(1.2rem, 1.05rem + 0.6vw, 1.4rem);   /* ~19–22px */
+  --t-h4:        1.05rem;
+  --t-body:      1.0625rem; /* 17px */
+  --t-small:     0.9375rem; /* 15px */
+  --t-cap:       0.8125rem; /* 13px */
+
+  --lh-tight:    1.15;
+  --lh-snug:     1.3;
+  --lh-body:     1.65;
+
+  /* ---- SPACING (8px base) ---- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+
+  /* ---- LAYOUT ---- */
+  --container: 1140px;
+  --container-narrow: 780px;
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-lg: 14px;
+
+  /* ---- ELEVATION (minimal, agrarian-clean) ---- */
+  --shadow-1: 0 1px 0 rgba(44,42,38,0.04), 0 1px 2px rgba(44,42,38,0.06);
+  --shadow-2: 0 4px 18px rgba(44,42,38,0.08);
+  --shadow-3: 0 10px 30px rgba(44,42,38,0.12);
+}
+
+/* ============================================================
+   RESET / BASE
+   ============================================================ */
+*,*::before,*::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--t-body);
+  line-height: var(--lh-body);
+  color: var(--loam);
+  background: var(--bone);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--loam); text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+a:hover { color: var(--gold-deep); }
+
+h1,h2,h3,h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--loam);
+  line-height: var(--lh-tight);
+  margin: 0 0 var(--s-4);
+  letter-spacing: -0.01em;
+}
+h1 { font-size: var(--t-h1); }
+h2 { font-size: var(--t-h2); margin-top: var(--s-7); }
+h3 { font-size: var(--t-h3); margin-top: var(--s-5); }
+h4 { font-size: var(--t-h4); font-family: var(--font-sans); font-weight: 700; }
+
+p { margin: 0 0 var(--s-4); }
+
+/* ============================================================
+   LAYOUT PRIMITIVES
+   ============================================================ */
+.container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 var(--s-5); }
+.container-narrow { max-width: var(--container-narrow); }
+.section { padding: var(--s-8) 0; }
+.section-tight { padding: var(--s-7) 0; }
+.section-dark { background: var(--loam); color: var(--bone); }
+.section-dark h1, .section-dark h2, .section-dark h3 { color: var(--bone); }
+.section-alt { background: var(--bone-2); }
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--t-cap);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin: 0 0 var(--s-3);
+}
+
+.gold-rule {
+  display: inline-block;
+  width: 56px;
+  height: 3px;
+  background: var(--gold);
+  border: 0;
+  margin: var(--s-3) 0 var(--s-5);
+}
+
+.lead {
+  font-size: 1.15rem;
+  color: var(--loam-2);
+  line-height: 1.55;
+  max-width: 60ch;
+}
+
+/* Gold-underline accent for inline emphasis in body copy */
+.accent {
+  background-image: linear-gradient(transparent 62%, var(--gold-soft) 62%, var(--gold-soft) 92%, transparent 92%);
+  padding: 0 2px;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 14px 22px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  text-decoration: none;
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  transition: transform 0.08s ease, background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
+  line-height: 1;
+}
+.btn:active { transform: translateY(1px); }
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--loam);
+  border-color: var(--gold);
+}
+.btn-primary:hover { background: var(--gold-deep); border-color: var(--gold-deep); color: var(--bone); }
+
+.btn-dark {
+  background: var(--loam);
+  color: var(--bone);
+  border-color: var(--loam);
+}
+.btn-dark:hover { background: var(--loam-2); border-color: var(--loam-2); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--loam);
+  border-color: var(--loam);
+}
+.btn-outline:hover { background: var(--loam); color: var(--bone); }
+
+.btn-lg { padding: 18px 28px; font-size: 1.125rem; }
+
+/* ============================================================
+   HEADER (locked across all pages)
+   ============================================================ */
+.site-header {
+  background: var(--bone);
+  border-bottom: 1px solid var(--cotton);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s-3) 0;
+  gap: var(--s-4);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  text-decoration: none;
+  color: var(--loam);
+}
+.brand-mark {
+  width: 40px; height: 40px;
+  background: var(--loam);
+  color: var(--gold);
+  display: grid; place-items: center;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.25rem;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+.brand-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.1rem;
+  line-height: 1.1;
+}
+.brand-tag {
+  font-size: 0.75rem;
+  color: var(--loam-3);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+}
+.nav a {
+  text-decoration: none;
+  color: var(--loam-2);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.nav a:hover { color: var(--loam); }
+.nav .btn { padding: 10px 16px; font-size: 0.95rem; }
+
+@media (max-width: 820px) {
+  .nav a:not(.btn) { display: none; }
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  padding: var(--s-8) 0 var(--s-7);
+  background:
+    radial-gradient(1200px 400px at 80% -10%, rgba(200,151,58,0.10), transparent 60%),
+    var(--bone);
+}
+.hero h1 {
+  font-size: var(--t-display);
+  max-width: 18ch;
+  margin-bottom: var(--s-5);
+}
+.hero .lead { margin-bottom: var(--s-6); }
+.hero-cta { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.hero-trust {
+  margin-top: var(--s-6);
+  display: flex; flex-wrap: wrap; gap: var(--s-5);
+  font-size: var(--t-small);
+  color: var(--loam-3);
+}
+.hero-trust span::before { content: "•"; color: var(--gold); margin-right: var(--s-2); font-weight: 700; }
+.hero-trust span:first-child::before { content: ""; margin-right: 0; }
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card {
+  background: var(--bone);
+  border: 1px solid var(--cotton);
+  border-radius: var(--radius);
+  padding: var(--s-5);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.card:hover { border-color: var(--gold); box-shadow: var(--shadow-2); }
+.card h3 { margin-top: 0; }
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--gold-deep);
+  text-decoration: none;
+  margin-top: var(--s-3);
+}
+.card-link::after { content: "→"; transition: transform 0.15s ease; }
+.card-link:hover::after { transform: translateX(3px); }
+
+.grid {
+  display: grid;
+  gap: var(--s-5);
+}
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 900px) {
+  .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .grid-3, .grid-4, .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* Service / area mini-card variant */
+.mini-card {
+  border: 1px solid var(--cotton);
+  border-radius: var(--radius);
+  padding: var(--s-4) var(--s-5);
+  background: var(--bone);
+}
+.mini-card h4 { margin: 0 0 var(--s-2); font-size: 1rem; }
+.mini-card p { margin: 0; font-size: var(--t-small); color: var(--loam-2); }
+
+/* ============================================================
+   BADGES / TAGS
+   ============================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--gold-soft);
+  color: var(--loam);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.badge-dark { background: var(--loam); color: var(--gold); }
+
+/* ============================================================
+   TABLES
+   ============================================================ */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-small);
+  margin: var(--s-5) 0;
+}
+.tbl th, .tbl td {
+  text-align: left;
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--cotton);
+  vertical-align: top;
+}
+.tbl th {
+  background: var(--bone-2);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--loam);
+  font-size: var(--t-cap);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.tbl tr:last-child td { border-bottom: 0; }
+
+/* ============================================================
+   FAQ (details/summary, no JS)
+   ============================================================ */
+.faq-item {
+  border-bottom: 1px solid var(--cotton);
+  padding: var(--s-4) 0;
+}
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--loam);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-4);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  font-family: var(--font-sans);
+  font-weight: 400;
+  color: var(--gold-deep);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.faq-item[open] summary::after { content: "–"; }
+.faq-item summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+.faq-item-body { padding-top: var(--s-3); color: var(--loam-2); }
+.faq-item-body p:last-child { margin-bottom: 0; }
+
+/* ============================================================
+   PROCESS STEPS
+   ============================================================ */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-5);
+  counter-reset: stp;
+}
+@media (max-width: 900px) { .steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+.step {
+  position: relative;
+  padding: var(--s-5);
+  background: var(--bone);
+  border: 1px solid var(--cotton);
+  border-radius: var(--radius);
+  counter-increment: stp;
+}
+.step::before {
+  content: counter(stp, decimal-leading-zero);
+  display: block;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--gold-deep);
+  margin-bottom: var(--s-2);
+}
+.step h4 { margin: 0 0 var(--s-2); }
+.step p { margin: 0; font-size: var(--t-small); color: var(--loam-2); }
+
+/* ============================================================
+   CTA STRIP / MID-PAGE CTA
+   ============================================================ */
+.cta-strip {
+  background: var(--loam);
+  color: var(--bone);
+  padding: var(--s-7) 0;
+  text-align: center;
+}
+.cta-strip h2 { color: var(--bone); margin-top: 0; }
+.cta-strip p { color: var(--cotton); max-width: 60ch; margin: 0 auto var(--s-5); }
+.cta-strip .gold-rule { background: var(--gold); }
+
+.cta-inline {
+  background: var(--bone-2);
+  border-left: 4px solid var(--gold);
+  padding: var(--s-5);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: var(--s-6) 0;
+}
+.cta-inline h3 { margin: 0 0 var(--s-3); }
+.cta-inline p { margin: 0 0 var(--s-4); color: var(--loam-2); }
+
+/* ============================================================
+   FOOTER (locked across all pages)
+   ============================================================ */
+.site-footer {
+  background: var(--loam);
+  color: var(--cotton);
+  padding: var(--s-8) 0 var(--s-5);
+  font-size: var(--t-small);
+}
+.site-footer a { color: var(--cotton); text-decoration: none; }
+.site-footer a:hover { color: var(--gold-soft); }
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.2fr 1.4fr 2fr;
+  gap: var(--s-7);
+  margin-bottom: var(--s-7);
+}
+@media (max-width: 900px) { .footer-top { grid-template-columns: 1fr; gap: var(--s-6); } }
+.footer-nap p { margin: 0 0 var(--s-2); }
+.footer-nap .brand-name { color: var(--bone); font-size: 1.25rem; }
+.footer-nap .phone-big {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-top: var(--s-3);
+  font-weight: 700;
+  text-decoration: none;
+}
+.footer-h { 
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: var(--gold-soft);
+  font-weight: 700;
+  margin: 0 0 var(--s-4);
+}
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px var(--s-4);
+  font-size: 0.85rem;
+}
+.footer-list.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.footer-list.cols-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 600px) { .footer-list, .footer-list.cols-3, .footer-list.cols-4 { grid-template-columns: 1fr 1fr; } }
+.footer-bottom {
+  border-top: 1px solid rgba(230,224,207,0.18);
+  padding-top: var(--s-4);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--s-3);
+  font-size: var(--t-cap);
+  color: var(--cotton-2);
+}
+.footer-bottom a { color: var(--cotton-2); }
+
+/* ============================================================
+   STICKY MOBILE CALL BUTTON
+   ============================================================ */
+.sticky-call {
+  display: none;
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  background: var(--gold);
+  color: var(--loam);
+  text-align: center;
+  padding: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1.05rem;
+  z-index: 50;
+  box-shadow: 0 -2px 14px rgba(44,42,38,0.18);
+}
+@media (max-width: 720px) {
+  .sticky-call { display: block; }
+  body { padding-bottom: 56px; }
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.text-center { text-align: center; }
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.muted { color: var(--loam-3); }
+.small { font-size: var(--t-small); }
+.divider { height: 1px; background: var(--cotton); border: 0; margin: var(--s-6) 0; }
+
+/* ============================================================
+   DESIGN-SYSTEM PAGE ONLY (not used on site pages)
+   ============================================================ */
+.ds-doc { padding: var(--s-8) 0; }
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: var(--s-4); margin: var(--s-5) 0; }
+.swatch { border: 1px solid var(--cotton); border-radius: var(--radius); overflow: hidden; }
+.swatch-color { height: 92px; }
+.swatch-meta { padding: var(--s-3); background: var(--bone); font-size: var(--t-cap); }
+.swatch-meta b { display: block; font-size: 0.95rem; font-family: var(--font-sans); color: var(--loam); }
+.swatch-meta code { color: var(--loam-3); font-size: 0.8rem; }
+.type-row { padding: var(--s-3) 0; border-bottom: 1px solid var(--cotton); display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); flex-wrap: wrap; }
+.type-row code { font-size: var(--t-cap); color: var(--loam-3); }
+.button-row { display: flex; flex-wrap: wrap; gap: var(--s-3); margin: var(--s-4) 0; }
+</style>
+</head>
+<body>
+
+<!-- LOCKED HEADER (replicated on every page) -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark">W</span>
+      <span>
+        <span class="brand-name">Waco Rodent Control</span><br>
+        <span class="brand-tag">McLennan County · 24/7</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/services/">Services</a>
+      <a href="/areas/">Areas</a>
+      <a href="/blog/">Blog</a>
+      <a class="btn btn-primary" href="tel:2543431352">Call (254) 343-1352</a>
+    </nav>
+  </div>
+</header>
+
+<main class="ds-doc">
+  <div class="container">
+
+    <p class="eyebrow">Design System · Locked</p>
+    <h1>McLennan Field</h1>
+    <hr class="gold-rule">
+    <p class="lead">Cotton-belt agrarian palette tuned for trust and conversion. Bone-white surfaces let serif headings carry authority; harvest gold underlines and CTAs cue action without shouting. This reference page locks every visual token used across the 100-page <span class="accent">rodentcontrolwaco.com</span> build.</p>
+
+    <!-- ===================== PALETTE ===================== -->
+    <h2>Palette</h2>
+    <p class="muted small">Core three: bone, loam, gold. Everything else is a tint, shade, or text role.</p>
+
+    <h3>Core</h3>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FAF7F0"></div>
+        <div class="swatch-meta"><b>Bone</b><code>#FAF7F0 · --bone</code></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#2C2A26"></div>
+        <div class="swatch-meta"><b>Loam</b><code>#2C2A26 · --loam</code></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#C8973A"></div>
+        <div class="swatch-meta"><b>Harvest Gold</b><code>#C8973A · --gold</code></div>
+      </div>
+    </div>
+
+    <h3>Supporting</h3>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F2EEE2"></div>
+        <div class="swatch-meta"><b>Bone 2</b><code>#F2EEE2 · alt surface</code></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#E6E0CF"></div>
+        <div class="swatch-meta"><b>Cotton</b><code>#E6E0CF · borders</code></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#C9C1AC"></div>
+        <div class="swatch-meta"><b>Cotton 2</b><code>#C9C1AC · muted</code></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#4A463F"></div>
+        <div class="swatch-meta"><b>Loam 2</b><code>#4A463F · body text</code></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#6B6558"></div>
+        <div class="swatch-meta"><b>Loam 3</b><code>#6B6558 · captions</code></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#A87A23"></div>
+        <div class="swatch-meta"><b>Gold Deep</b><code>#A87A23 · hover</code></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#E8C988"></div>
+        <div class="swatch-meta"><b>Gold Soft</b><code>#E8C988 · accents</code></div>
+      </div>
+    </div>
+
+    <!-- ===================== TYPE ===================== -->
+    <h2>Typography</h2>
+    <p class="muted small">Headings: <b>Source Serif 4</b>. Body & UI: <b>Source Sans 3</b>. Both Google Fonts, free, broad weight coverage.</p>
+
+    <div class="type-row">
+      <span style="font-family:var(--font-serif); font-size:var(--t-display); line-height:1.05; font-weight:600;">Display 60</span>
+      <code>--t-display · Source Serif 4 600</code>
+    </div>
+    <div class="type-row">
+      <span style="font-family:var(--font-serif); font-size:var(--t-h1); font-weight:600;">H1 — Waco Rodent Control</span>
+      <code>--t-h1 · clamp(30→44px)</code>
+    </div>
+    <div class="type-row">
+      <span style="font-family:var(--font-serif); font-size:var(--t-h2); font-weight:600;">H2 — Why This Matters in Waco</span>
+      <code>--t-h2 · clamp(24→32px)</code>
+    </div>
+    <div class="type-row">
+      <span style="font-family:var(--font-serif); font-size:var(--t-h3); font-weight:600;">H3 — Brazos-Bottom Pressure</span>
+      <code>--t-h3 · clamp(19→22px)</code>
+    </div>
+    <div class="type-row">
+      <span style="font-size:var(--t-h4); font-weight:700;">H4 — Inline subhead</span>
+      <code>--t-h4 · Source Sans 3 700</code>
+    </div>
+    <div class="type-row">
+      <span style="font-size:var(--t-body);">Body — Source Sans 3 at 17px / 1.65 line-height. Long-form copy reads cleanly on bone backgrounds.</span>
+      <code>--t-body · 17px</code>
+    </div>
+    <div class="type-row">
+      <span style="font-size:var(--t-small); color:var(--loam-2);">Small — captions, table cells, footer links.</span>
+      <code>--t-small · 15px</code>
+    </div>
+    <div class="type-row">
+      <span class="eyebrow">Eyebrow Label</span>
+      <code>--t-cap · uppercase · gold-deep</code>
+    </div>
+
+    <!-- ===================== BUTTONS ===================== -->
+    <h2>Buttons</h2>
+    <p class="muted small">Primary phone CTA is gold-on-loam. Always include the dialable number in the label when space allows.</p>
+    <div class="button-row">
+      <a class="btn btn-primary" href="tel:2543431352">Call (254) 343-1352</a>
+      <a class="btn btn-primary btn-lg" href="tel:2543431352">Call Now — (254) 343-1352</a>
+      <a class="btn btn-dark" href="/services/">Browse Services</a>
+      <a class="btn btn-outline" href="/areas/">Service Areas</a>
+    </div>
+
+    <!-- ===================== HERO SAMPLE ===================== -->
+    <h2>Sample Hero</h2>
+    <div style="border:1px solid var(--cotton); border-radius:var(--radius-lg); overflow:hidden;">
+      <section class="hero" style="padding:var(--s-7) var(--s-5);">
+        <p class="eyebrow">Waco · McLennan County · Open 24/7</p>
+        <h1 style="margin-bottom:var(--s-4);">Honest Rodent Control for <span class="accent">Central Texas</span> Homes &amp; Businesses</h1>
+        <p class="lead">Locally owned rat and mouse removal serving every neighborhood from Downtown and Baylor to Woodway, plus Temple, Hillsboro, McGregor, and 22 other nearby Texas towns. Same-day inspections, transparent pricing, no contracts.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-lg" href="tel:2543431352">Call (254) 343-1352</a>
+          <a class="btn btn-outline btn-lg" href="/services/">See All 28 Services</a>
+        </div>
+        <div class="hero-trust">
+          <span>Licensed &amp; Insured</span>
+          <span>Locally Owned</span>
+          <span>Open 24/7</span>
+          <span>Same-Day Available</span>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================== CARDS ===================== -->
+    <h2>Service / Area Cards</h2>
+    <div class="grid grid-3">
+      <article class="card">
+        <h3>Rat Control</h3>
+        <p>Full-property rat inspection, trapping, exclusion, and follow-up across Waco's older neighborhoods and Brazos-bottom properties.</p>
+        <a class="card-link" href="#">Service details</a>
+      </article>
+      <article class="card">
+        <h3>Mice Control</h3>
+        <p>House mouse removal and entry-point sealing for residential and small-commercial properties in McLennan County.</p>
+        <a class="card-link" href="#">Service details</a>
+      </article>
+      <article class="card">
+        <h3>Emergency Rodent Removal</h3>
+        <p>Same-day response for active infestations, dead-rodent odors, and wall-cavity activity across the Waco metro.</p>
+        <a class="card-link" href="#">Service details</a>
+      </article>
+    </div>
+
+    <h3>Area Mini-Cards</h3>
+    <div class="grid grid-3">
+      <div class="mini-card">
+        <h4>Downtown Waco</h4>
+        <p>Historic district with brick foundations and restaurant-driven roof rat pressure.</p>
+      </div>
+      <div class="mini-card">
+        <h4>Woodway</h4>
+        <p>Newer suburb with mature landscaping and seasonal mouse intrusions in attics.</p>
+      </div>
+      <div class="mini-card">
+        <h4>Baylor</h4>
+        <p>Student-rental density and off-campus housing inspections near the university.</p>
+      </div>
+    </div>
+
+    <!-- ===================== PROCESS ===================== -->
+    <h2>Process Steps</h2>
+    <div class="steps">
+      <div class="step"><h4>Inspect</h4><p>Whole-property walkthrough — attic, crawl, exterior, entry points, droppings.</p></div>
+      <div class="step"><h4>Identify</h4><p>Norway rat, roof rat, or house mouse — species drives the trap and bait strategy.</p></div>
+      <div class="step"><h4>Treat</h4><p>Trapping, baiting, and removal sized to the activity level we found on inspection.</p></div>
+      <div class="step"><h4>Prevent</h4><p>Seal entry points, exclude future pathways, and schedule follow-up monitoring.</p></div>
+    </div>
+
+    <!-- ===================== TABLE ===================== -->
+    <h2>Comparison Table</h2>
+    <table class="tbl">
+      <thead>
+        <tr><th>Species</th><th>Identification</th><th>Typical Location</th><th>Treatment Approach</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Norway rat</td><td>8–10″, blunt nose, heavy body, brown</td><td>Ground burrows, sewers, Brazos bottoms</td><td>Snap traps + burrow baiting + exterior exclusion</td></tr>
+        <tr><td>Roof rat</td><td>6–8″, pointed nose, slender, sleek black</td><td>Attics, palms, fruit trees, Baylor-area homes</td><td>Attic trapping + tree-line removal + roof exclusion</td></tr>
+        <tr><td>House mouse</td><td>2.5–4″, small ears, gray-brown</td><td>Walls, pantries, garages, year-round</td><td>Snap traps + pantry audit + dime-sized gap sealing</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ===================== FAQ ===================== -->
+    <h2>FAQ</h2>
+    <details class="faq-item" open>
+      <summary>Do you offer same-day service in Waco?</summary>
+      <div class="faq-item-body">
+        <p>Yes — most Waco-area calls placed before mid-afternoon can be inspected the same day, depending on technician routing. Call <a href="tel:2543431352">(254) 343-1352</a> to confirm next available slot.</p>
+      </div>
+    </details>
+    <details class="faq-item">
+      <summary>Are your treatments safe around pets and children?</summary>
+      <div class="faq-item-body">
+        <p>Our standard approach leads with mechanical trapping and exclusion. Any chemical product used follows Texas structural pest control regulations and is placed in tamper-resistant stations away from living-area access.</p>
+      </div>
+    </details>
+    <details class="faq-item">
+      <summary>How long does a typical Waco rodent job take?</summary>
+      <div class="faq-item-body">
+        <p>Initial inspection runs 45–90 minutes. Active treatment typically resolves over 1–3 follow-up visits across 2–4 weeks, depending on infestation severity and property size.</p>
+      </div>
+    </details>
+
+    <!-- ===================== MID-PAGE CTA ===================== -->
+    <h2>CTA Patterns</h2>
+
+    <div class="cta-inline">
+      <h3>Same-Day Rodent Service in Waco — Call (254) 343-1352</h3>
+      <p>Open 24/7 for emergency rodent removal across McLennan County.</p>
+      <a class="btn btn-primary" href="tel:2543431352">Call Now</a>
+    </div>
+
+    <div style="margin: var(--s-6) 0;">
+      <section class="cta-strip" style="border-radius: var(--radius-lg);">
+        <div class="container container-narrow">
+          <p class="eyebrow" style="color:var(--gold-soft);">Open 24/7</p>
+          <h2>We Cover All of McLennan County</h2>
+          <hr class="gold-rule">
+          <p>From the Brazos River bottoms to Woodway's newer suburbs, our team services every Waco neighborhood plus 25 nearby Central Texas towns within ~45 minutes.</p>
+          <a class="btn btn-primary btn-lg" href="tel:2543431352">Call (254) 343-1352</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================== BADGES ===================== -->
+    <h2>Badges &amp; Tags</h2>
+    <div class="button-row">
+      <span class="badge">Same-Day Available</span>
+      <span class="badge">Free Inspection</span>
+      <span class="badge badge-dark">Open 24/7</span>
+    </div>
+
+  </div>
+</main>
+
+<!-- LOCKED FOOTER (replicated on every page) -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+
+      <div class="footer-nap">
+        <p class="brand-name" style="font-family:var(--font-serif);">Waco Rodent Control</p>
+        <p>3112 Maple Ave<br>Waco, TX 76707</p>
+        <p>Open 24/7 · McLennan County</p>
+        <a class="phone-big" href="tel:2543431352">(254) 343-1352</a>
+        <p style="margin-top:var(--s-3); color:var(--cotton-2);"><a href="mailto:contact@rodentcontrolwaco.com">contact@rodentcontrolwaco.com</a></p>
+      </div>
+
+      <div>
+        <p class="footer-h">Services</p>
+        <ul class="footer-list">
+          <li><a href="/services/rat-control-services">Rat Control</a></li>
+          <li><a href="/services/mice-control-services">Mice Control</a></li>
+          <li><a href="/services/rodent-removal-services">Rodent Removal</a></li>
+          <li><a href="/services/emergency-rodent-removal">Emergency Removal</a></li>
+          <li><a href="/services/roof-rat-removal-services">Roof Rat Removal</a></li>
+          <li><a href="/services/norway-rat-control-services">Norway Rat Control</a></li>
+          <li><a href="/services/residential-rodent-control">Residential</a></li>
+          <li><a href="/services/commercial-rodent-control">Commercial</a></li>
+          <li><a href="/services/">All 28 services →</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer-h">Service Areas</p>
+        <ul class="footer-list cols-4">
+          <li><a href="/areas/downtown">Downtown</a></li>
+          <li><a href="/areas/baylor">Baylor</a></li>
+          <li><a href="/areas/woodway">Woodway</a></li>
+          <li><a href="/areas/austin-avenue">Austin Avenue</a></li>
+          <li><a href="/areas/china-spring">China Spring</a></li>
+          <li><a href="/areas/temple">Temple</a></li>
+          <li><a href="/areas/hillsboro">Hillsboro</a></li>
+          <li><a href="/areas/mc-gregor">McGregor</a></li>
+          <li><a href="/areas/">All 51 areas →</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2024–2026 Waco Rodent Control. Locally owned. Open 24/7.</span>
+      <span><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/about">About</a> · <a href="/contact">Contact</a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="sticky-call" href="tel:2543431352">📞 Call (254) 343-1352 — Open 24/7</a>
+
+</body>
+</html>

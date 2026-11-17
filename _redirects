@@ -1,0 +1,119 @@
+# Cloudflare Pages _redirects
+# Strip .html extensions — canonical URLs have no extension
+
+/about.html  /about  301
+/contact.html  /contact  301
+/privacy.html  /privacy  301
+/terms.html  /terms  301
+
+# Service pages
+/services/rat-control-services.html  /services/rat-control-services  301
+/services/mice-control-services.html  /services/mice-control-services  301
+/services/rodent-removal-services.html  /services/rodent-removal-services  301
+/services/emergency-rodent-removal.html  /services/emergency-rodent-removal  301
+/services/mouse-infestation-treatment.html  /services/mouse-infestation-treatment  301
+/services/roof-rat-removal-services.html  /services/roof-rat-removal-services  301
+/services/norway-rat-control-services.html  /services/norway-rat-control-services  301
+/services/residential-rodent-control.html  /services/residential-rodent-control  301
+/services/same-day-rat-removal.html  /services/same-day-rat-removal  301
+/services/commercial-rodent-control.html  /services/commercial-rodent-control  301
+/services/apartment-property-management-rodent-control.html  /services/apartment-property-management-rodent-control  301
+/services/warehouse-rodent-control.html  /services/warehouse-rodent-control  301
+/services/rodent-exclusion-services.html  /services/rodent-exclusion-services  301
+/services/rat-proofing-services.html  /services/rat-proofing-services  301
+/services/mouse-proofing-sealing-entry-points.html  /services/mouse-proofing-sealing-entry-points  301
+/services/attic-rodent-proofing.html  /services/attic-rodent-proofing  301
+/services/crawl-space-rodent-sealing.html  /services/crawl-space-rodent-sealing  301
+/services/historic-home-rodent-control.html  /services/historic-home-rodent-control  301
+/services/airbnb-rental-property-rodent-services.html  /services/airbnb-rental-property-rodent-services  301
+/services/restaurant-rodent-control-services.html  /services/restaurant-rodent-control-services  301
+/services/rodent-droppings-cleanup.html  /services/rodent-droppings-cleanup  301
+/services/rat-nest-removal.html  /services/rat-nest-removal  301
+/services/attic-rodent-cleanup-sanitization.html  /services/attic-rodent-cleanup-sanitization  301
+/services/insulation-replacement-after-rodent-damage.html  /services/insulation-replacement-after-rodent-damage  301
+/services/rodent-inspection-services.html  /services/rodent-inspection-services  301
+/services/dead-rodent-removal-services.html  /services/dead-rodent-removal-services  301
+/services/agricultural-property-rodent-control.html  /services/agricultural-property-rodent-control  301
+/services/rodent-bait-station-installation.html  /services/rodent-bait-station-installation  301
+
+# Area pages
+/areas/downtown.html  /areas/downtown  301
+/areas/baylor.html  /areas/baylor  301
+/areas/woodway.html  /areas/woodway  301
+/areas/austin-avenue.html  /areas/austin-avenue  301
+/areas/sanger-heights.html  /areas/sanger-heights  301
+/areas/north-waco.html  /areas/north-waco  301
+/areas/east-riverside.html  /areas/east-riverside  301
+/areas/bellmead.html  /areas/bellmead  301
+/areas/lacy-lakeview.html  /areas/lacy-lakeview  301
+/areas/china-spring.html  /areas/china-spring  301
+/areas/brookview.html  /areas/brookview  301
+/areas/brazos.html  /areas/brazos  301
+/areas/oakwood.html  /areas/oakwood  301
+/areas/dean-highland.html  /areas/dean-highland  301
+/areas/beverly-hills.html  /areas/beverly-hills  301
+/areas/south-waco.html  /areas/south-waco  301
+/areas/university.html  /areas/university  301
+/areas/hewitt.html  /areas/hewitt  301
+/areas/lakeview.html  /areas/lakeview  301
+/areas/glenview.html  /areas/glenview  301
+/areas/mountainview.html  /areas/mountainview  301
+/areas/midway.html  /areas/midway  301
+/areas/lake-shore.html  /areas/lake-shore  301
+/areas/bosqueville.html  /areas/bosqueville  301
+/areas/kendall.html  /areas/kendall  301
+/areas/lake-air.html  /areas/lake-air  301
+/areas/alta-vista.html  /areas/alta-vista  301
+/areas/sunset-acres.html  /areas/sunset-acres  301
+/areas/carver-heights.html  /areas/carver-heights  301
+/areas/cedar-ridge.html  /areas/cedar-ridge  301
+/areas/highland.html  /areas/highland  301
+/areas/temple.html  /areas/temple  301
+/areas/hillsboro.html  /areas/hillsboro  301
+/areas/mc-gregor.html  /areas/mc-gregor  301
+/areas/lorena.html  /areas/lorena  301
+/areas/salado.html  /areas/salado  301
+/areas/moody.html  /areas/moody  301
+/areas/mart.html  /areas/mart  301
+/areas/marlin.html  /areas/marlin  301
+/areas/robinson.html  /areas/robinson  301
+/areas/corsicana.html  /areas/corsicana  301
+/areas/whitney.html  /areas/whitney  301
+/areas/meridian.html  /areas/meridian  301
+/areas/clifton.html  /areas/clifton  301
+/areas/gatesville.html  /areas/gatesville  301
+/areas/copperas-cove.html  /areas/copperas-cove  301
+/areas/waxahachie.html  /areas/waxahachie  301
+/areas/mexia.html  /areas/mexia  301
+/areas/cameron.html  /areas/cameron  301
+/areas/belton.html  /areas/belton  301
+/areas/lampasas.html  /areas/lampasas  301
+
+# Blog posts
+/blog/rodent-control-after-waco-flooding-brazos-bottoms-and-rat-displacement.html  /blog/rodent-control-after-waco-flooding-brazos-bottoms-and-rat-displacement  301
+/blog/magnolia-area-short-term-rental-rodent-control-protecting-your-waco-airbnb.html  /blog/magnolia-area-short-term-rental-rodent-control-protecting-your-waco-airbnb  301
+/blog/norway-rat-vs-roof-rat-in-waco-how-to-tell-the-difference-and-why-it-matters.html  /blog/norway-rat-vs-roof-rat-in-waco-how-to-tell-the-difference-and-why-it-matters  301
+/blog/when-to-call-a-professional-rat-and-mouse-control-company-in-waco.html  /blog/when-to-call-a-professional-rat-and-mouse-control-company-in-waco  301
+/blog/waco-mouse-and-rat-season-calendar-when-rodent-pressure-peaks-in-mclennan-county.html  /blog/waco-mouse-and-rat-season-calendar-when-rodent-pressure-peaks-in-mclennan-county  301
+/blog/rodent-proofing-materials-that-actually-work-and-what-fails-in-texas-heat.html  /blog/rodent-proofing-materials-that-actually-work-and-what-fails-in-texas-heat  301
+/blog/pecan-harvest-season-and-roof-rats-in-waco-what-every-homeowner-needs-to-know.html  /blog/pecan-harvest-season-and-roof-rats-in-waco-what-every-homeowner-needs-to-know  301
+/blog/waco-landlord-guide-to-rodent-control-texas-property-code-and-tenant-rights.html  /blog/waco-landlord-guide-to-rodent-control-texas-property-code-and-tenant-rights  301
+/blog/dead-rat-in-the-wall-what-to-do-and-not-do-in-waco.html  /blog/dead-rat-in-the-wall-what-to-do-and-not-do-in-waco  301
+/blog/commercial-rodent-prevention-in-waco-what-i-35-corridor-businesses-need-to-know.html  /blog/commercial-rodent-prevention-in-waco-what-i-35-corridor-businesses-need-to-know  301
+/blog/mouse-proofing-your-waco-home-before-winter-a-room-by-room-checklist.html  /blog/mouse-proofing-your-waco-home-before-winter-a-room-by-room-checklist  301
+/blog/rodent-control-in-historic-waco-homes-what-works-on-century-old-construction.html  /blog/rodent-control-in-historic-waco-homes-what-works-on-century-old-construction  301
+
+# Index pages with trailing slash variants
+/services  /services/  301
+/areas  /areas/  301
+/blog  /blog/  301
+# Index page HTML extension redirects
+/services/index.html    /services/    301
+/areas/index.html       /areas/       301
+/blog/index.html        /blog/        301
+
+# 404 catch-all — must be the last rule in this file
+/blog/how-much-does-rodent-control-cost-in-waco-2025-price-guide.html    /blog/how-much-does-rodent-control-cost-in-waco-2025-price-guide    301
+/blog/how-to-identify-rodent-activity-in-your-waco-home.html    /blog/how-to-identify-rodent-activity-in-your-waco-home    301
+/areas/carver       /areas/carver-heights       301
+/*    /404.html    404
